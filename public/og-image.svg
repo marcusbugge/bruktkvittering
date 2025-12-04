@@ -1,0 +1,37 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect x="60" y="60" width="1080" height="510" rx="24" fill="#141414" stroke="#262626" stroke-width="2"/>
+  
+  <!-- Receipt icon -->
+  <g transform="translate(520, 150)">
+    <rect x="20" y="0" width="120" height="160" rx="8" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+    <rect x="40" y="30" width="80" height="8" rx="2" fill="#404040"/>
+    <rect x="40" y="50" width="60" height="6" rx="2" fill="#333"/>
+    <rect x="40" y="70" width="70" height="6" rx="2" fill="#333"/>
+    <rect x="40" y="100" width="80" height="2" fill="#262626"/>
+    <rect x="40" y="115" width="50" height="6" rx="2" fill="#333"/>
+    <rect x="100" y="115" width="20" height="6" rx="2" fill="#666"/>
+    <path d="M20 145 L40 160 L80 120 L100 140 L140 100" stroke="#22c55e" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="600" y="380" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="700" fill="white" text-anchor="middle">Bruktkvittering</text>
+  
+  <!-- Subtitle -->
+  <text x="600" y="440" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="#888" text-anchor="middle">Lag kvitteringer for bruktkjøp fra Finn.no og Tise</text>
+  
+  <!-- Badges -->
+  <g transform="translate(400, 480)">
+    <rect x="0" y="0" width="120" height="36" rx="18" fill="#1a1a1a" stroke="#333"/>
+    <text x="60" y="24" font-family="system-ui, sans-serif" font-size="14" fill="#888" text-anchor="middle">✓ 100% Gratis</text>
+  </g>
+  <g transform="translate(540, 480)">
+    <rect x="0" y="0" width="120" height="36" rx="18" fill="#1a1a1a" stroke="#333"/>
+    <text x="60" y="24" font-family="system-ui, sans-serif" font-size="14" fill="#888" text-anchor="middle">✓ Finn.no</text>
+  </g>
+  <g transform="translate(680, 480)">
+    <rect x="0" y="0" width="100" height="36" rx="18" fill="#1a1a1a" stroke="#333"/>
+    <text x="50" y="24" font-family="system-ui, sans-serif" font-size="14" fill="#888" text-anchor="middle">✓ Tise</text>
+  </g>
+</svg>
+
