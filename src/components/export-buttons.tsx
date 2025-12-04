@@ -187,19 +187,16 @@ Generert: ${new Date().toLocaleDateString("nb-NO")}
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          size="lg"
-          className="rounded-full font-bold shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all gap-2 pl-6 pr-4 bg-white hover:bg-zinc-50 text-foreground hover:text-foreground border-border"
-        >
-          <Download className="w-4 h-4" />
-          Last ned
-          <ChevronDown className="w-4 h-4 ml-1 opacity-50" />
+        <Button size="lg" className="w-full font-semibold shadow-sm">
+          <Download className="mr-2 h-4 w-4" />
+          Last ned kvittering
+          <ChevronDown className="ml-2 h-4 w-4 opacity-50" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        align="end"
-        className="w-56 p-1.5 rounded-xl border-border/50 shadow-xl bg-white/95 backdrop-blur-sm"
+        align="center"
+        sideOffset={8}
+        className="w-[calc(100vw-32px)] sm:w-56"
       >
         <DropdownMenuItem
           onClick={handleExportPDF}

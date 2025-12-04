@@ -4,59 +4,60 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #f8f7ff;
-  --foreground: #1e1b4b;
+  --background: #f2f2f7;
+  --foreground: #000000;
   --card: #ffffff;
-  --card-foreground: #1e1b4b;
+  --card-foreground: #000000;
   --popover: #ffffff;
-  --popover-foreground: #1e1b4b;
-  --primary: #7c3aed;
+  --popover-foreground: #000000;
+  --primary: #007aff;
   --primary-foreground: #ffffff;
-  --secondary: #e9e5ff;
-  --secondary-foreground: #4c1d95;
-  --muted: #f3f0ff;
-  --muted-foreground: #6b7280;
-  --accent: #c4b5fd;
-  --accent-foreground: #4c1d95;
-  --destructive: #ef4444;
+  --secondary: #e5e5ea;
+  --secondary-foreground: #000000;
+  --muted: #f2f2f7;
+  --muted-foreground: #8e8e93;
+  --accent: #007aff;
+  --accent-foreground: #ffffff;
+  --destructive: #ff3b30;
   --destructive-foreground: #ffffff;
-  --border: #ddd6fe;
-  --input: #ddd6fe;
-  --ring: #7c3aed;
-  --chart-1: #7c3aed;
-  --chart-2: #a78bfa;
-  --chart-3: #c4b5fd;
-  --chart-4: #ddd6fe;
-  --chart-5: #ede9fe;
+  --border: #c6c6c8;
+  --input: #c6c6c8;
+  --ring: #007aff;
+  --chart-1: #007aff;
+  --chart-2: #5856d6;
+  --chart-3: #5ac8fa;
+  --chart-4: #34c759;
+  --chart-5: #ffcc00;
   --radius: 1rem;
-  --font-sans: Inter, system-ui, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
 }
 
 .dark {
-  --background: #1e1b4b;
-  --foreground: #f8f7ff;
-  --card: #2e2a5e;
-  --card-foreground: #f8f7ff;
-  --popover: #2e2a5e;
-  --popover-foreground: #f8f7ff;
-  --primary: #a78bfa;
-  --primary-foreground: #1e1b4b;
-  --secondary: #3b3675;
-  --secondary-foreground: #e9e5ff;
-  --muted: #2e2a5e;
-  --muted-foreground: #a5b4fc;
-  --accent: #4c1d95;
-  --accent-foreground: #e9e5ff;
-  --destructive: #ef4444;
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #1c1c1e;
+  --card-foreground: #ffffff;
+  --popover: #1c1c1e;
+  --popover-foreground: #ffffff;
+  --primary: #0a84ff;
+  --primary-foreground: #ffffff;
+  --secondary: #2c2c2e;
+  --secondary-foreground: #ffffff;
+  --muted: #1c1c1e;
+  --muted-foreground: #8e8e93;
+  --accent: #0a84ff;
+  --accent-foreground: #ffffff;
+  --destructive: #ff453a;
   --destructive-foreground: #ffffff;
-  --border: #4c1d95;
-  --input: #4c1d95;
-  --ring: #a78bfa;
-  --chart-1: #a78bfa;
-  --chart-2: #7c3aed;
-  --chart-3: #6d28d9;
-  --chart-4: #5b21b6;
-  --chart-5: #4c1d95;
+  --border: #38383a;
+  --input: #38383a;
+  --ring: #0a84ff;
+  --chart-1: #0a84ff;
+  --chart-2: #5e5ce6;
+  --chart-3: #64d2ff;
+  --chart-4: #30d158;
+  --chart-5: #ffd60a;
 }
 
 @theme inline {
@@ -113,12 +114,12 @@
 .navbar-pattern {
   background-image: radial-gradient(
       circle at 20% 50%,
-      rgba(167, 139, 250, 0.15) 0%,
+      rgba(0, 122, 255, 0.15) 0%,
       transparent 50%
     ),
     radial-gradient(
       circle at 80% 50%,
-      rgba(196, 181, 253, 0.1) 0%,
+      rgba(90, 200, 250, 0.1) 0%,
       transparent 40%
     ),
     linear-gradient(
@@ -217,7 +218,7 @@
 .navbar-orb-1 {
   width: 120px;
   height: 120px;
-  background: rgba(196, 181, 253, 0.5);
+  background: rgba(90, 200, 250, 0.5);
   top: -40px;
   left: 10%;
   animation: float 6s ease-in-out infinite;
@@ -226,7 +227,7 @@
 .navbar-orb-2 {
   width: 80px;
   height: 80px;
-  background: rgba(167, 139, 250, 0.4);
+  background: rgba(0, 122, 255, 0.4);
   top: -20px;
   right: 20%;
   animation: float 8s ease-in-out infinite reverse;
@@ -246,14 +247,12 @@
 @keyframes ai-glow-pulse {
   0%,
   100% {
-    box-shadow: inset 0 0 8px rgba(124, 58, 237, 0.3),
-      inset 0 0 16px rgba(167, 139, 250, 0.15),
-      0 0 0 1px rgba(124, 58, 237, 0.2);
+    box-shadow: inset 0 0 8px rgba(0, 122, 255, 0.3),
+      inset 0 0 16px rgba(90, 200, 250, 0.15), 0 0 0 1px rgba(0, 122, 255, 0.2);
   }
   50% {
-    box-shadow: inset 0 0 16px rgba(124, 58, 237, 0.5),
-      inset 0 0 32px rgba(167, 139, 250, 0.25),
-      0 0 0 2px rgba(124, 58, 237, 0.4);
+    box-shadow: inset 0 0 16px rgba(0, 122, 255, 0.5),
+      inset 0 0 32px rgba(90, 200, 250, 0.25), 0 0 0 2px rgba(0, 122, 255, 0.4);
   }
 }
 
@@ -283,11 +282,11 @@
   padding: 2px;
   background: linear-gradient(
     90deg,
-    rgba(124, 58, 237, 0.1),
-    rgba(167, 139, 250, 0.6),
-    rgba(196, 181, 253, 0.8),
-    rgba(167, 139, 250, 0.6),
-    rgba(124, 58, 237, 0.1)
+    rgba(0, 122, 255, 0.1),
+    rgba(90, 200, 250, 0.6),
+    rgba(0, 122, 255, 0.8),
+    rgba(90, 200, 250, 0.6),
+    rgba(0, 122, 255, 0.1)
   );
   background-size: 200% 100%;
   animation: ai-border-flow 2s linear infinite;

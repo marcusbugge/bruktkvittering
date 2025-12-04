@@ -12,45 +12,56 @@ import Image from "next/image";
 
 export function Navbar() {
   return (
-    <nav className="sticky top-0 z-50 w-full bg-primary text-primary-foreground shadow-lg rounded-b-3xl px-4 sm:px-6 py-4 mb-8 navbar-pattern relative overflow-hidden">
-      {/* Ambient orbs */}
-      <div className="navbar-orb navbar-orb-1" />
-      <div className="navbar-orb navbar-orb-2" />
-      
-      {/* Light lines */}
-      <div className="navbar-glow" />
-      <div className="navbar-glow-bottom" />
-      
-      {/* Shimmer effect */}
-      <div className="navbar-shimmer" />
-      
-      <div className="container mx-auto max-w-7xl flex items-center justify-between relative z-10">
-        <Link 
-          href="/" 
-          className="flex items-center gap-2 hover:opacity-90 transition-opacity group"
+    <nav className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-black/5 transition-all">
+      <div className="container mx-auto max-w-5xl px-4 sm:px-6 h-12 flex items-center justify-between">
+        <Link
+          href="/"
+          className="flex items-center gap-2 hover:opacity-70 transition-opacity"
         >
-          <Logo textClassName="text-white" iconClassName="text-white w-8 h-8" />
+          <Logo
+            textClassName="text-black text-[17px] font-semibold tracking-normal"
+            iconClassName="text-black w-5 h-5"
+          />
         </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-6">
+        {/* Desktop Menu - Apple Style (Text Links) */}
+        <div className="hidden md:flex items-center gap-8">
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground transition-colors outline-none">
-              Guider <ChevronDown className="w-4 h-4" />
+            <DropdownMenuTrigger className="flex items-center gap-1 text-[12px] font-normal text-gray-600 hover:text-black transition-colors outline-none tracking-wide">
+              Guider <ChevronDown className="w-3 h-3 opacity-50" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
-              <DropdownMenuItem asChild className="cursor-pointer">
-                <Link href="/faq/finn" className="flex items-center gap-2">
-                  <div className="relative w-4 h-4">
-                    <Image src="/finn.png" alt="Finn" fill className="object-contain" />
+            <DropdownMenuContent
+              align="center"
+              className="w-48 p-1 rounded-xl border-black/5 shadow-xl bg-white/95 backdrop-blur-xl"
+            >
+              <DropdownMenuItem
+                asChild
+                className="cursor-pointer rounded-lg text-[13px]"
+              >
+                <Link href="/faq/finn" className="flex items-center gap-3 py-1">
+                  <div className="relative w-4 h-4 grayscale opacity-80">
+                    <Image
+                      src="/finn.png"
+                      alt="Finn"
+                      fill
+                      className="object-contain"
+                    />
                   </div>
                   Finn.no Guide
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem asChild className="cursor-pointer">
-                <Link href="/faq/tise" className="flex items-center gap-2">
-                  <div className="relative w-4 h-4">
-                    <Image src="/tise.png" alt="Tise" fill className="object-contain" />
+              <DropdownMenuItem
+                asChild
+                className="cursor-pointer rounded-lg text-[13px]"
+              >
+                <Link href="/faq/tise" className="flex items-center gap-3 py-1">
+                  <div className="relative w-4 h-4 grayscale opacity-80">
+                    <Image
+                      src="/tise.png"
+                      alt="Tise"
+                      fill
+                      className="object-contain"
+                    />
                   </div>
                   Tise Guide
                 </Link>
@@ -58,21 +69,19 @@ export function Navbar() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Link 
-            href="/faq" 
-            className="text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+          <Link
+            href="/faq"
+            className="text-[12px] font-normal text-gray-600 hover:text-black transition-colors tracking-wide"
           >
             Hjelpesenter
           </Link>
-          
-          <Button 
-            asChild 
-            variant="secondary" 
-            className="rounded-full font-bold shadow-sm hover:shadow-md transition-all bg-background text-foreground hover:bg-background/90"
+
+          <Button
+            asChild
+            size="sm"
+            className="h-7 px-3 rounded-full bg-black hover:bg-gray-800 text-white text-[12px] font-medium shadow-none transition-all"
           >
-            <Link href="/">
-              Lag ny kvittering
-            </Link>
+            <Link href="/">Lag kvittering</Link>
           </Button>
         </div>
 
@@ -80,32 +89,61 @@ export function Navbar() {
         <div className="md:hidden">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
-                <Menu className="w-5 h-5" />
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 text-black hover:bg-black/5"
+              >
+                <Menu className="w-5 h-5" strokeWidth={1.5} />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56 p-2">
-              <DropdownMenuItem asChild className="cursor-pointer mb-1 bg-secondary/50 font-semibold">
-                <Link href="/">
+            <DropdownMenuContent
+              align="end"
+              className="w-56 p-2 rounded-xl border-black/5 shadow-xl bg-white/95 backdrop-blur-xl mt-2"
+            >
+              <DropdownMenuItem
+                asChild
+                className="cursor-pointer mb-1 bg-black text-white focus:bg-gray-800 focus:text-white rounded-lg"
+              >
+                <Link href="/" className="justify-center font-medium">
                   Lag ny kvittering
                 </Link>
               </DropdownMenuItem>
-              <div className="h-px bg-border my-2" />
-              <DropdownMenuItem asChild className="cursor-pointer">
+              <div className="h-px bg-gray-100 my-2" />
+              <DropdownMenuItem
+                asChild
+                className="cursor-pointer rounded-lg text-[15px]"
+              >
                 <Link href="/faq">Hjelpesenter</Link>
               </DropdownMenuItem>
-              <DropdownMenuItem asChild className="cursor-pointer">
+              <DropdownMenuItem
+                asChild
+                className="cursor-pointer rounded-lg text-[15px]"
+              >
                 <Link href="/faq/finn" className="flex items-center gap-2">
                   <div className="relative w-4 h-4">
-                    <Image src="/finn.png" alt="Finn" fill className="object-contain" />
+                    <Image
+                      src="/finn.png"
+                      alt="Finn"
+                      fill
+                      className="object-contain"
+                    />
                   </div>
                   Finn.no Guide
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem asChild className="cursor-pointer">
+              <DropdownMenuItem
+                asChild
+                className="cursor-pointer rounded-lg text-[15px]"
+              >
                 <Link href="/faq/tise" className="flex items-center gap-2">
                   <div className="relative w-4 h-4">
-                    <Image src="/tise.png" alt="Tise" fill className="object-contain" />
+                    <Image
+                      src="/tise.png"
+                      alt="Tise"
+                      fill
+                      className="object-contain"
+                    />
                   </div>
                   Tise Guide
                 </Link>

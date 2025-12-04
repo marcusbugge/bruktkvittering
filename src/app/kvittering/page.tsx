@@ -33,14 +33,16 @@ function getInitialReceiptData(): ReceiptData {
 
 export default function KvitteringPage() {
   const router = useRouter();
-  const [receiptData, setReceiptData] = useState<ReceiptData>(getInitialReceiptData());
+  const [receiptData, setReceiptData] = useState<ReceiptData>(
+    getInitialReceiptData()
+  );
   const [loading, setLoading] = useState(true);
   const receiptRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Sjekk om vi har data fra forsiden
     const storedData = sessionStorage.getItem("receiptData");
-    
+
     if (storedData) {
       try {
         const parsedData = JSON.parse(storedData);
@@ -48,8 +50,8 @@ export default function KvitteringPage() {
       } catch (e) {
         console.error("Kunne ikke lese data fra sessionStorage", e);
       }
-    } 
-    // Vi tillater at man kommer hit uten data (blankt skjema), 
+    }
+    // Vi tillater at man kommer hit uten data (blankt skjema),
     // men vi setter loading til false uansett
     setLoading(false);
   }, []);
@@ -113,20 +115,23 @@ export default function KvitteringPage() {
   }
 
   return (
-    <main className="min-h-screen no-print pb-20">
+    <main className="min-h-screen no-print pb-20 bg-[#F2F2F7]">
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 max-w-7xl"
+        className="container mx-auto px-2 sm:px-6 py-4 sm:py-8 max-w-7xl"
       >
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-24 items-start">
+        <div className="grid lg:grid-cols-2  items-start">
           {/* Left: Form - vises først på mobil */}
           <motion.div
             variants={fadeUpVariants}
             className="order-2 lg:order-1 lg:pr-8"
           >
             <ReceiptForm data={receiptData} onChange={setReceiptData} />
+            <div className="mt-8">
+              <ExportButtons receiptRef={receiptRef} data={receiptData} />
+            </div>
           </motion.div>
 
           {/* Right: Preview - vises øverst på mobil */}
@@ -135,15 +140,8 @@ export default function KvitteringPage() {
             className="order-1 lg:order-2 lg:sticky lg:top-32"
           >
             <motion.div
-              variants={fadeUpVariants}
-              className="mb-6 flex justify-end"
-            >
-              <ExportButtons receiptRef={receiptRef} data={receiptData} />
-            </motion.div>
-            
-            <motion.div
               variants={receiptCardVariants}
-              className="flex justify-center bg-gray-100/50 rounded-3xl p-4 sm:p-8 border border-border/50 shadow-inner overflow-x-auto"
+              className="flex justify-center overflow-x-auto py-4"
             >
               <div className="min-w-fit">
                 <ReceiptPreview ref={receiptRef} data={receiptData} />

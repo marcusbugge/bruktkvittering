@@ -2,7 +2,7 @@
 
 import { forwardRef } from "react";
 import { ReceiptData } from "@/lib/types";
-import { Package, User, ShoppingCart, PenTool } from "lucide-react";
+import { Check } from "lucide-react";
 
 interface ReceiptPreviewProps {
   data: ReceiptData;
@@ -14,40 +14,47 @@ export const ReceiptPreview = forwardRef<HTMLDivElement, ReceiptPreviewProps>(
       if (!dateString) return "—";
       const date = new Date(dateString);
       return date.toLocaleDateString("nb-NO", {
-        day: "2-digit",
-        month: "2-digit",
+        day: "numeric",
+        month: "short",
         year: "numeric",
-      });
-    };
-
-    const formatTime = () => {
-      return new Date().toLocaleTimeString("nb-NO", {
-        hour: "2-digit",
-        minute: "2-digit",
       });
     };
 
     const formatPrice = (price: number) => {
       return new Intl.NumberFormat("nb-NO", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
       }).format(price);
     };
 
-    const sectionTitleStyle = {
-      fontSize: "10px",
-      fontWeight: "bold",
-      color: "#1a1a1a",
-      letterSpacing: "2px",
-      marginBottom: "8px",
-      display: "flex",
-      alignItems: "center",
-      textTransform: "uppercase" as const,
+    const formatTime = () => {
+      const now = new Date();
+      return now.toLocaleTimeString("nb-NO", {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
     };
 
-    const sectionContentStyle = {
-      paddingLeft: "8px",
-      borderLeft: "2px solid #e5e5e5",
+    // Apple-style typography
+    const labelStyle = {
+      fontSize: "11px",
+      color: "#8E8E93",
+      marginBottom: "2px",
+      textTransform: "uppercase" as const,
+      letterSpacing: "0.02em",
+      fontWeight: 500,
+    };
+
+    const valueStyle = {
+      fontSize: "15px",
+      color: "#000000",
+      fontWeight: 400,
+      lineHeight: "1.3",
+    };
+
+    const sectionStyle = {
+      padding: "12px 0",
+      borderBottom: "1px solid #E5E5EA",
     };
 
     return (
@@ -55,373 +62,290 @@ export const ReceiptPreview = forwardRef<HTMLDivElement, ReceiptPreviewProps>(
         ref={ref}
         style={{
           backgroundColor: "#ffffff",
-          color: "#1a1a1a",
-          padding: "24px 20px",
-          fontFamily: "'Courier New', Courier, monospace",
-          fontSize: "12px",
           width: "320px",
-          boxShadow: "0 4px 24px rgba(0,0,0,0.12)",
-          borderRadius: "4px",
-          position: "relative",
           margin: "0 auto",
+          fontFamily:
+            '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+          boxShadow: "0 8px 30px rgba(0,0,0,0.12)",
+          borderRadius: "16px",
+          overflow: "hidden",
+          position: "relative",
         }}
       >
-        {/* Torn edge effect top */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "8px",
-            background:
-              "linear-gradient(135deg, transparent 33.33%, #fff 33.33%, #fff 66.66%, transparent 66.66%), linear-gradient(225deg, transparent 33.33%, #fff 33.33%, #fff 66.66%, transparent 66.66%)",
-            backgroundSize: "8px 8px",
-            marginTop: "-4px",
-          }}
-        />
-
         {/* Header */}
         <div
           style={{
+            backgroundColor: "#007AFF",
+            padding: "24px 20px 20px",
+            color: "white",
             textAlign: "center",
-            marginBottom: "16px",
-            paddingTop: "8px",
           }}
         >
-          <p
+          <div
             style={{
-              fontSize: "18px",
-              fontWeight: "bold",
-              letterSpacing: "4px",
-              marginBottom: "4px",
+              width: "48px",
+              height: "48px",
+              backgroundColor: "rgba(255, 255, 255, 0.2)",
+              borderRadius: "12px",
+              margin: "0 auto 12px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-            KVITTERING
-          </p>
-          <p style={{ fontSize: "10px", color: "#666" }}>
-            Kjøp mellom privatpersoner
-          </p>
-        </div>
-
-        <div style={{ borderTop: "1px dashed #ccc", marginBottom: "12px" }} />
-
-        {/* Date & Time */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginBottom: "12px",
-            fontSize: "11px",
-          }}
-        >
-          <span>DATO: {formatDate(data.purchaseDate)}</span>
-          <span>KL: {formatTime()}</span>
-        </div>
-
-        {data.location && (
-          <p style={{ fontSize: "11px", marginBottom: "12px" }}>
-            STED: {data.location}
-          </p>
-        )}
-
-        <div style={{ borderTop: "1px dashed #ccc", marginBottom: "12px" }} />
-
-        {/* Product */}
-        <div style={{ marginBottom: "16px" }}>
-          <div style={sectionTitleStyle}>
-            <Package size={12} style={{ marginRight: "6px" }} />
-            <span>Produkt</span>
+            <Check size={24} color="white" strokeWidth={3} />
           </div>
-          <div style={sectionContentStyle}>
-            {/* Product Image */}
-            {data.productImage && (
-              <div
-                style={{
-                  marginBottom: "10px",
-                  borderRadius: "6px",
-                  overflow: "hidden",
-                  border: "1px solid #eee",
-                }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
+          <h1
+            style={{
+              fontSize: "24px",
+              fontWeight: 700,
+              margin: "0 0 4px",
+              letterSpacing: "-0.01em",
+            }}
+          >
+            Kvittering
+          </h1>
+          <p style={{ fontSize: "13px", color: "rgba(255, 255, 255, 0.8)" }}>
+            Bruktkvittering
+          </p>
+        </div>
+
+        {/* Content */}
+        <div style={{ padding: "0 20px 24px" }}>
+          {/* Main Info */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              paddingTop: "20px",
+              paddingBottom: "16px",
+              borderBottom: "1px solid #E5E5EA",
+            }}
+          >
+            <div>
+              <p style={labelStyle}>Dato</p>
+              <p style={valueStyle}>{formatDate(data.purchaseDate)}</p>
+            </div>
+            <div style={{ textAlign: "right" }}>
+              <p style={labelStyle}>Tid</p>
+              <p style={valueStyle}>{formatTime()}</p>
+            </div>
+          </div>
+
+          {/* Product */}
+          <div style={sectionStyle}>
+            <p style={labelStyle}>Produkt</p>
+            <div style={{ display: "flex", gap: "12px", marginTop: "8px" }}>
+              {data.productImage && (
+                // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={`/api/proxy-image?url=${encodeURIComponent(
                     data.productImage
                   )}`}
-                  alt={data.productName || "Produktbilde"}
-                  crossOrigin="anonymous"
+                  alt="Produkt"
                   style={{
-                    width: "100%",
-                    height: "auto",
-                    maxHeight: "120px",
+                    width: "48px",
+                    height: "48px",
+                    borderRadius: "8px",
                     objectFit: "cover",
-                    display: "block",
+                    backgroundColor: "#F2F2F7",
                   }}
                 />
+              )}
+              <div style={{ flex: 1 }}>
+                <p style={{ ...valueStyle, fontWeight: 600 }}>
+                  {data.productName || "—"}
+                </p>
+                {data.description && (
+                  <p
+                    style={{
+                      fontSize: "13px",
+                      color: "#8E8E93",
+                      marginTop: "2px",
+                    }}
+                  >
+                    {data.description}
+                  </p>
+                )}
               </div>
-            )}
-            <p
-              style={{
-                fontWeight: "bold",
-                fontSize: "13px",
-                marginBottom: data.description ? "6px" : "0",
-                lineHeight: "1.3",
-              }}
-            >
-              {data.productName || "—"}
-            </p>
-            {data.description && (
-              <p
-                style={{
-                  fontSize: "11px",
-                  color: "#444",
-                  lineHeight: "1.5",
-                  fontStyle: "italic",
-                  padding: "6px 8px",
-                  backgroundColor: "#fafafa",
-                  borderRadius: "4px",
-                  margin: "0",
-                }}
-              >
-                {data.description}
-              </p>
-            )}
+            </div>
           </div>
-        </div>
 
-        <div style={{ borderTop: "1px dashed #ccc", marginBottom: "12px" }} />
-
-        {/* Seller */}
-        <div style={{ marginBottom: "12px" }}>
-          <div style={sectionTitleStyle}>
-            <User size={12} style={{ marginRight: "6px" }} />
-            <span>Selger</span>
-          </div>
-          <div style={sectionContentStyle}>
-            <p style={{ fontWeight: "bold" }}>{data.sellerName || "—"}</p>
-            {data.sellerPhone && (
-              <p style={{ fontSize: "10px", color: "#666" }}>
-                Tlf: {data.sellerPhone}
-              </p>
-            )}
-            {data.sellerEmail && (
-              <p style={{ fontSize: "10px", color: "#666" }}>
-                {data.sellerEmail}
-              </p>
-            )}
-          </div>
-        </div>
-
-        {/* Buyer */}
-        <div style={{ marginBottom: "16px" }}>
-          <div style={sectionTitleStyle}>
-            <ShoppingCart size={12} style={{ marginRight: "6px" }} />
-            <span>Kjøper</span>
-          </div>
-          <div style={sectionContentStyle}>
-            <p style={{ fontWeight: "bold" }}>{data.buyerName || "—"}</p>
-            {data.buyerPhone && (
-              <p style={{ fontSize: "10px", color: "#666" }}>
-                Tlf: {data.buyerPhone}
-              </p>
-            )}
-            {data.buyerEmail && (
-              <p style={{ fontSize: "10px", color: "#666" }}>
-                {data.buyerEmail}
-              </p>
-            )}
-          </div>
-        </div>
-
-        <div style={{ borderTop: "1px dashed #ccc", marginBottom: "12px" }} />
-
-        {/* Total */}
-        <div style={{ marginBottom: "16px" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              fontSize: "11px",
-              marginBottom: "4px",
-            }}
-          >
-            <span>Vare</span>
-            <span>kr {formatPrice(data.price || 0)}</span>
-          </div>
-          {data.paymentMethod && (
+          {/* Price Summary */}
+          <div style={sectionStyle}>
             <div
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                fontSize: "11px",
-                marginBottom: "8px",
+                marginBottom: "4px",
               }}
             >
-              <span>Betalt med</span>
-              <span>{data.paymentMethod}</span>
+              <span style={{ fontSize: "15px", color: "#000" }}>Beløp</span>
+              <span style={{ fontSize: "15px", color: "#000" }}>
+                kr {formatPrice(data.price || 0)}
+              </span>
             </div>
-          )}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              fontSize: "16px",
-              fontWeight: "bold",
-              padding: "8px",
-              backgroundColor: "#f5f5f5",
-              borderRadius: "4px",
-              marginTop: "8px",
-            }}
-          >
-            <span>TOTALT</span>
-            <span>kr {formatPrice(data.price || 0)}</span>
-          </div>
-        </div>
-
-        {/* Signatures */}
-        {(data.sellerSignature || data.buyerSignature) && (
-          <>
-            <div
-              style={{ borderTop: "1px dashed #ccc", marginBottom: "12px" }}
-            />
-            <div style={{ marginBottom: "16px" }}>
+            {data.paymentMethod && (
               <div
                 style={{
-                  ...sectionTitleStyle,
-                  justifyContent: "center",
-                  marginBottom: "12px",
+                  display: "flex",
+                  justifyContent: "space-between",
                 }}
               >
-                <PenTool size={12} style={{ marginRight: "6px" }} />
-                <span>Signaturer</span>
+                <span style={{ fontSize: "13px", color: "#8E8E93" }}>
+                  Betalt med
+                </span>
+                <span style={{ fontSize: "13px", color: "#8E8E93" }}>
+                  {data.paymentMethod}
+                </span>
               </div>
+            )}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginTop: "12px",
+                paddingTop: "12px",
+                borderTop: "1px dashed #E5E5EA",
+              }}
+            >
+              <span style={{ fontSize: "17px", fontWeight: 700 }}>Total</span>
+              <span style={{ fontSize: "17px", fontWeight: 700 }}>
+                kr {formatPrice(data.price || 0)}
+              </span>
+            </div>
+          </div>
+
+          {/* Seller / Buyer Grid */}
+          <div style={sectionStyle}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: "16px",
+              }}
+            >
+              <div>
+                <p style={labelStyle}>Selger</p>
+                <p style={{ ...valueStyle, fontWeight: 500 }}>
+                  {data.sellerName || "—"}
+                </p>
+                {data.sellerPhone && (
+                  <p style={{ fontSize: "13px", color: "#8E8E93" }}>
+                    {data.sellerPhone}
+                  </p>
+                )}
+              </div>
+              <div>
+                <p style={labelStyle}>Kjøper</p>
+                <p style={{ ...valueStyle, fontWeight: 500 }}>
+                  {data.buyerName || "—"}
+                </p>
+                {data.buyerPhone && (
+                  <p style={{ fontSize: "13px", color: "#8E8E93" }}>
+                    {data.buyerPhone}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Location */}
+          {data.location && (
+            <div style={sectionStyle}>
+              <p style={labelStyle}>Sted</p>
+              <p style={valueStyle}>{data.location}</p>
+            </div>
+          )}
+
+          {/* Signatures */}
+          {(data.sellerSignature || data.buyerSignature) && (
+            <div style={{ paddingTop: "12px", paddingBottom: "12px" }}>
+              <p style={labelStyle}>Signert</p>
               <div
                 style={{
                   display: "grid",
                   gridTemplateColumns: "1fr 1fr",
-                  gap: "12px",
+                  gap: "16px",
+                  marginTop: "8px",
                 }}
               >
-                <div style={{ textAlign: "center" }}>
-                  <p
-                    style={{
-                      fontSize: "9px",
-                      color: "#999",
-                      marginBottom: "4px",
-                    }}
-                  >
-                    Selger
-                  </p>
-                  {data.sellerSignature ? (
-                    /* eslint-disable-next-line @next/next/no-img-element */
+                {data.sellerSignature && (
+                  <div style={{ textAlign: "center" }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={data.sellerSignature}
-                      alt="Selgers signatur"
-                      style={{
-                        maxHeight: "40px",
-                        maxWidth: "100%",
-                        margin: "0 auto",
-                      }}
+                      alt="Selger"
+                      style={{ height: "32px", maxWidth: "100%" }}
                     />
-                  ) : (
-                    <div
+                    <p
                       style={{
-                        height: "40px",
-                        borderBottom: "1px solid #ccc",
+                        fontSize: "10px",
+                        color: "#C7C7CC",
+                        marginTop: "4px",
                       }}
-                    />
-                  )}
-                </div>
-                <div style={{ textAlign: "center" }}>
-                  <p
-                    style={{
-                      fontSize: "9px",
-                      color: "#999",
-                      marginBottom: "4px",
-                    }}
-                  >
-                    Kjøper
-                  </p>
-                  {data.buyerSignature ? (
-                    /* eslint-disable-next-line @next/next/no-img-element */
+                    >
+                      Selger
+                    </p>
+                  </div>
+                )}
+                {data.buyerSignature && (
+                  <div style={{ textAlign: "center" }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={data.buyerSignature}
-                      alt="Kjøpers signatur"
-                      style={{
-                        maxHeight: "40px",
-                        maxWidth: "100%",
-                        margin: "0 auto",
-                      }}
+                      alt="Kjøper"
+                      style={{ height: "32px", maxWidth: "100%" }}
                     />
-                  ) : (
-                    <div
+                    <p
                       style={{
-                        height: "40px",
-                        borderBottom: "1px solid #ccc",
+                        fontSize: "10px",
+                        color: "#C7C7CC",
+                        marginTop: "4px",
                       }}
-                    />
-                  )}
-                </div>
+                    >
+                      Kjøper
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
-          </>
-        )}
-
-        <div style={{ borderTop: "1px dashed #ccc", marginBottom: "12px" }} />
-
-        {/* Reference */}
-        <div style={{ textAlign: "center", fontSize: "10px", color: "#999" }}>
-          {data.adId && <p>Ref: {data.adId}</p>}
-          {data.platform && (
-            <p>
-              Kilde:{" "}
-              {data.platform === "finn"
-                ? "Finn.no"
-                : data.platform === "tise"
-                ? "Tise"
-                : data.platform}
-            </p>
-          )}
-          {data.originalUrl && (
-            <p
-              style={{
-                fontSize: "8px",
-                wordBreak: "break-all",
-                marginTop: "4px",
-              }}
-            >
-              {data.originalUrl}
-            </p>
           )}
         </div>
 
-        <div style={{ borderTop: "1px dashed #ccc", margin: "12px 0" }} />
-
-        {/* Footer */}
-        <div style={{ textAlign: "center" }}>
-          <p style={{ fontSize: "10px", color: "#999", marginBottom: "8px" }}>
-            Takk for handelen!
-          </p>
-          <p style={{ fontSize: "9px", color: "#ccc" }}>
-            Generert {formatDate(new Date().toISOString())} kl {formatTime()}
-          </p>
-        </div>
-
-        {/* Torn edge effect bottom */}
+        {/* Footer Barcode Illusion */}
         <div
           style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: "8px",
-            background:
-              "linear-gradient(45deg, transparent 33.33%, #fff 33.33%, #fff 66.66%, transparent 66.66%), linear-gradient(315deg, transparent 33.33%, #fff 33.33%, #fff 66.66%, transparent 66.66%)",
-            backgroundSize: "8px 8px",
-            marginBottom: "-4px",
+            backgroundColor: "#F2F2F7",
+            padding: "16px 20px",
+            textAlign: "center",
           }}
-        />
+        >
+          {/* Barcode Lines Illusion */}
+          <div
+            style={{
+              height: "32px",
+              backgroundImage:
+                "linear-gradient(90deg, #000 1px, transparent 1px, transparent 3px, #000 3px, #000 4px, transparent 4px, transparent 6px, #000 6px, #000 7px, transparent 7px, transparent 9px, #000 9px, #000 11px, transparent 11px, transparent 13px, #000 13px)",
+              backgroundSize: "14px 100%",
+              opacity: 0.15,
+              marginBottom: "8px",
+            }}
+          />
+          <p
+            style={{
+              fontSize: "10px",
+              color: "#8E8E93",
+              fontFamily: "monospace",
+              marginBottom: "4px",
+            }}
+          >
+            {data.adId || "NO-" + new Date().getFullYear() + "REC"}
+          </p>
+          <p style={{ fontSize: "9px", color: "#C7C7CC" }}>
+            Laget med lagkvittering.no
+          </p>
+        </div>
       </div>
     );
   }
